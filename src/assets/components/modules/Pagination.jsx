@@ -1,5 +1,5 @@
 import styles from "../styles/pagination.module.css";
-export default function Pagination({ page, setPage }) {
+export default function Pagination({ page, setPage,isLoading }) {
   const clickHandler = ({ target }) => {
     if (target.innerText == "Previus") {
       if (page == 1){
@@ -18,7 +18,8 @@ export default function Pagination({ page, setPage }) {
     setPage(Number(target.innerText));
   };
   return (
-    <div className={styles.pagination}>
+    <>
+      {isLoading ? (null) : (<div className={styles.pagination}>
       <button onClick={clickHandler} className={(page ==1 ) ? (styles.disable) : null }>Previus</button>
       <button onClick={clickHandler} className={(page ==1 ) ? (styles.active) : null }>1</button>
       <button onClick={clickHandler} className={(page ==2 ) ? (styles.active) : null }>2</button>
@@ -32,6 +33,7 @@ export default function Pagination({ page, setPage }) {
       <button onClick={clickHandler} className={(page ==9  ) ? (styles.active) : null }>9</button>
       <button onClick={clickHandler} className={(page ==10 ) ? (styles.active) : null }>10</button>
       <button onClick={clickHandler} className={(page ==10 ) ? (styles.disable) : null }>Next</button>
-    </div>
+    </div>)}
+    </>
   );
 }

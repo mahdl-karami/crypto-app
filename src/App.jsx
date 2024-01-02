@@ -9,11 +9,12 @@ export default function App() {
     currency: "usd",
   });
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <div>
       <Layout filter={filter} setFilter={setFilter}>
-        <CoinTable page={page} currency={filter.currency} />
-        <Pagination page={page} setPage={setPage} />
+        <CoinTable page={page} currency={filter.currency} isLoading={isLoading} setIsLoading={setIsLoading}/>
+        <Pagination page={page} setPage={setPage} isLoading={isLoading}/>
       </Layout>
     </div>
   );

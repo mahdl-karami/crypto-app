@@ -3,10 +3,10 @@ import { returnURL } from "../../../services/cryptoAPI";
 import styles from "../styles/table.module.css";
 import { RotatingLines } from "react-loader-spinner";
 
-export default function CoinTable({ page, currency }) {
+export default function CoinTable({ page, currency, isLoading , setIsLoading }) {
   // set states
   const [coins, setCoins] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // loading states liftedUp
   // use effects
   useEffect(() => {
     const controller = new AbortController();
