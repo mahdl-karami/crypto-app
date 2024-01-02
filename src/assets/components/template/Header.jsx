@@ -1,4 +1,5 @@
 import styles from "../styles/header.module.css";
+import SearchBox from "../modules/SearchBox"
 export default function Header({ filter, setFilter }) {
   const { search, select } = filter;
   // functions
@@ -16,6 +17,7 @@ export default function Header({ filter, setFilter }) {
           value={search}
           onChange={changeHandler}
         />
+        <SearchBox search={filter.search} />
         <select name="currency" id="" value={select} onChange={changeHandler}>
           <option value="usd">$ usd</option>
           <option value="eur">€ eur</option>
