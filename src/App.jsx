@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div>
       <Layout filter={filter} setFilter={setFilter}>
-        <CoinTable page={page} />
+        <CoinTable page={page} currency={filter.currency} />
         <Pagination page={page} setPage={setPage} />
       </Layout>
     </div>

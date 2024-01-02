@@ -3,21 +3,32 @@ import { returnURL } from "../../../services/cryptoAPI";
 import styles from "../styles/table.module.css";
 import { RotatingLines } from "react-loader-spinner";
 
-export default function CoinTable({page}) {
+export default function CoinTable({ page, currency }) {
   // set states
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // use effects
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     const getData = async () => {
-      const res = await fetch(returnURL(page));
+      const res = await fetch(returnURL(page, currency));
       const json = await res.json();
       setCoins(json);
-      setIsLoading(false)
+      setIsLoading(false);
     };
     getData();
-  }, [page]);
+  }, [page, currency]);
+  // functions
+  const currencySymbol = () => {
+    if (currency == "usd") {
+      return "$";
+    }
+    if (currency == "eur") {
+      return "€";
+    } else {
+      return "¥";
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -66,7 +77,9 @@ export default function CoinTable({page}) {
                     </div>
                   </td>
                   <td>{name}</td>
-                  <td>{current_price.toLocaleString()}</td>
+                  <td>
+                    {currencySymbol()} {current_price.toLocaleString()}
+                  </td>
                   <td
                     className={price_change < 0 ? styles.alert : styles.succes}
                   >
