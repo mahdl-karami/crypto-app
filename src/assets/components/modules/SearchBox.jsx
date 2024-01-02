@@ -9,17 +9,24 @@ export default function SearchBox(props) {
   const [isLoading, setIsLoading] = useState(true);
   // use effects
   useEffect(() => {
+    const controller = new AbortController();
     setIsLoading(true);
     const getData = async () => {
-      const respons = await fetch(searchURL(search));
+      const respons = await fetch(searchURL(search), {
+        signal: controller.signal,
+      });
       const json = await respons.json();
       setCoins(json.coins);
       setIsLoading(false);
     };
     search ? getData() : setCoins([]);
+    return () => controller.abort();
   }, [search]);
   return (
-    <div className={styles.search} style={{display: `${search ? "block" : "none"}`}}>
+    <div
+      className={styles.search}
+      style={{ display: `${search ? "block" : "none"}` }}
+    >
       {isLoading && search ? (
         <div className={styles.loading}>
           <RotatingLines

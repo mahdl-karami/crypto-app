@@ -9,14 +9,18 @@ export default function CoinTable({ page, currency }) {
   const [isLoading, setIsLoading] = useState(true);
   // use effects
   useEffect(() => {
+    const controller = new AbortController();
     setIsLoading(true);
     const getData = async () => {
-      const res = await fetch(returnURL(page, currency));
+      const res = await fetch(returnURL(page, currency), {
+        signal: controller.signal,
+      });
       const json = await res.json();
       setCoins(json);
       setIsLoading(false);
     };
     getData();
+    return () => controller.abort();
   }, [page, currency]);
   // functions
   const currencySymbol = () => {
