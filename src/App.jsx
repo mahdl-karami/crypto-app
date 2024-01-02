@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "./assets/components/template/layout";
+import CoinTable from "./assets/components/modules/CoinTable";
 
 export default function App() {
   const [filter, setFilter] = useState({
@@ -9,7 +10,7 @@ export default function App() {
   return (
     <div>
       <Layout filter={filter} setFilter={setFilter}>
-        <h1>Layout Complated</h1>
+        <CoinTable />
       </Layout>
     </div>
   );
