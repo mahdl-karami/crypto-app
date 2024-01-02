@@ -31,3 +31,9 @@
 .alert{
     color: red;
 }
+.loading{
+    width: 100%;
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 10rem;
+}
