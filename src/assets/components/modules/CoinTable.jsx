@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { returnURL } from "../../../services/cryptoAPI";
 import styles from "../styles/table.module.css";
 import { RotatingLines } from "react-loader-spinner";
-export default function CoinTable() {
+
+export default function CoinTable({page}) {
   // set states
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,14 +11,13 @@ export default function CoinTable() {
   useEffect(() => {
     setIsLoading(true)
     const getData = async () => {
-      const res = await fetch(returnURL());
+      const res = await fetch(returnURL(page));
       const json = await res.json();
       setCoins(json);
       setIsLoading(false)
     };
     getData();
-  }, []);
-  console.log(styles);
+  }, [page]);
   return (
     <>
       {isLoading ? (

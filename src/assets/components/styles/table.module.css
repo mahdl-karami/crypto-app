@@ -33,7 +33,7 @@
 }
 .loading{
     width: 100%;
-    min-height: 100vh;
+    min-height: 60vh;
     text-align: center;
     padding-top: 10rem;
 }
