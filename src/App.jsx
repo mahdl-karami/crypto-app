@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Layout from "./assets/components/template/layout";
+import Layout from "./assets/components/template/Layout";
 import CoinTable from "./assets/components/modules/CoinTable";
 import Pagination from "./assets/components/modules/Pagination";
 
