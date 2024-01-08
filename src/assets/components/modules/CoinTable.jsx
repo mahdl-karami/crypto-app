@@ -1,13 +1,13 @@
 import ChartModal from "./ChartModal";
 import { useEffect, useState } from "react";
-import { chartData, returnURL } from "../../../services/cryptoAPI";
+import {returnURL } from "../../../services/cryptoAPI";
 import { RotatingLines } from "react-loader-spinner";
 import styles from "../styles/table.module.css";
 
 export default function CoinTable({ page, currency, isLoading, setIsLoading }) {
 	// set states
 	const [coins, setCoins] = useState([]);
-	const [chart, setChart] = useState(null);
+	const [modal , setModal] = useState(false);
 	// loading states liftedUp
 	// use effects
 	useEffect(() => {
@@ -35,15 +35,6 @@ export default function CoinTable({ page, currency, isLoading, setIsLoading }) {
 			return "¥";
 		}
 	};
-	const getChart = async (id, currency) => {
-		const res = await fetch(chartData(id, currency));
-		const json = await res.json();
-		setChart(
-			json.prices.map((item) => {
-				return { name: item[0], value: item[1] };
-			})
-		);
-	};
 	return (
 		<>
 			{isLoading ? (
@@ -68,7 +59,7 @@ export default function CoinTable({ page, currency, isLoading, setIsLoading }) {
 								<tr key={id}>
 									<td>
 										<div>
-											<img src={image} alt={id} onClick={() => getChart(id, currency)} />
+											<img src={image} alt={name} onClick={()=> setModal([id , image])}/>
 											<h2>{symbol}</h2>
 										</div>
 									</td>
@@ -83,7 +74,7 @@ export default function CoinTable({ page, currency, isLoading, setIsLoading }) {
 							))}
 						</tbody>
 					</table>
-					{chart ? <ChartModal chart={chart} setChart={setChart} getChart={getChart} /> : null}
+					{modal ? <ChartModal modal={modal} setModal={setModal} currency={currency}/> : null}
 				</>
 			)}
 		</>

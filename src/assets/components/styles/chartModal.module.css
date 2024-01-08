@@ -9,7 +9,7 @@
 }
 
 .modal {
-	width: 800px;
+	width: 1000px;
 	height: 600px;
 	background-color: red;
 	position: fixed;
@@ -22,4 +22,45 @@
 	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	border-radius: 10px;
 	border: 1px solid rgba(30, 143, 255, 0.096);
+
+	button {
+		background: transparent;
+		border: none;
+		outline: none;
+		font-size: 2rem;
+		color: dodgerblue;
+		cursor: pointer;
+		transition: 0.3s linear;
+		&:hover {
+			opacity: 80%;
+		}
+	}
+
+	img {
+		width: 40px;
+	}
+	h3 {
+		text-transform: uppercase;
+		opacity: 80%;
+		display: inline;
+	}
+}
+
+.coinInfo {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.chartFilter {
+	display: flex;
+	button {
+		background: dodgerblue;
+		border: none;
+		margin: 1rem 0.4rem 0 0;
+		color: #fff;
+		font-size: 1.3rem;
+		padding: 0.4rem 0.8rem;
+		border-radius: 5px;
+	}
 }
